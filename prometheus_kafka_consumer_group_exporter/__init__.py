@@ -266,7 +266,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Export Kafka consumer offsets to Prometheus.')
     parser.add_argument(
-        '-b', '--bootstrap-brokers', default='localhost',
+        '-b', '--bootstrap-brokers',
         help='Addresses of brokers in a Kafka cluster to talk to.' +
         ' Brokers should be separated by commas e.g. broker1,broker2.' +
         ' Ports can be provided if non-standard (9092) e.g. brokers1:9999.' +
