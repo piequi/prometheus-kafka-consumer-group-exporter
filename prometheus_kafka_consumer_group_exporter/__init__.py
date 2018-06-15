@@ -34,9 +34,9 @@ def build_highwaters():
     local_node_highwaters = node_highwaters.copy()
 
     highwaters = {}
-    for node, topics in local_node_highwaters.items():
-        for topic, partitions in topics.items():
-            highwaters[topic] = {**highwaters.get(topic, {}), **partitions}
+    # for node, topics in local_node_highwaters.items():
+    #     for topic, partitions in topics.items():
+    #         highwaters[topic] = {**highwaters.get(topic, {}), **partitions}
 
     return highwaters
 
@@ -49,9 +49,9 @@ def build_lowwaters():
     local_node_lowwaters = node_lowwaters.copy()
 
     lowwaters = {}
-    for node, topics in local_node_lowwaters.items():
-        for topic, partitions in topics.items():
-            lowwaters[topic] = {**lowwaters.get(topic, {}), **partitions}
+    # for node, topics in local_node_lowwaters.items():
+    #     for topic, partitions in topics.items():
+    #         lowwaters[topic] = {**lowwaters.get(topic, {}), **partitions}
 
     return lowwaters
 
@@ -266,7 +266,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Export Kafka consumer offsets to Prometheus.')
     parser.add_argument(
-        '-b', '--bootstrap-brokers', default='localhost',
+        '-b', '--bootstrap-brokers',
         help='Addresses of brokers in a Kafka cluster to talk to.' +
         ' Brokers should be separated by commas e.g. broker1,broker2.' +
         ' Ports can be provided if non-standard (9092) e.g. brokers1:9999.' +
