@@ -4,21 +4,27 @@ This Prometheus exporter consumes the `__consumer_offsets` topic of a Kafka clus
 
 The high-water and low-water marks of the partitions of each topic are also exported.
 
-# Installation
-The exporter requires Python 3 and Pip 3 to be installed.
+# Packaging
+In order to install this exporter on offline servers (without internet access), you first need to package pip dependencies.
 
-To install the latest published version via Pip, run:
+To download required python modules for offline pip installation, run:
 ```
-> pip3 install prometheus-kafka-consumer-group-exporter
+mkdir pip-dependencies
+pip3 download kafka-python==1.3.5 jog prometheus-client javaproperties -d "pip-dependencies"
 ```
-Note that you may need to add the start script location (see pip output) to your `PATH`.
+
+Then, add the `pip-dependencies` directory to the TAR file containing the exporter.
 
 # Usage
-Once installed, you can run the exporter with the `prometheus-kafka-consumer-group-exporter` command.
+Once installed, you can run the exporter with :
+```
+/usr/bin/python3 -m prometheus_kafka_consumer_group_exporter
+```
+> You will have to tell python where to find the module `prometheus_kafka_consumer_group_exporter` using the environment variable `PYTHONPATH`. Simply add the path of the directory where you've installed the exporter in that variable.
 
 By default, it will bind to port 9208 and connect to Kafka on `localhost:9092`. You can change these defaults as required by passing in arguments:
 ```
-> prometheus-kafka-consumer-group-exporter -p <port> -b <kafka nodes>
+prometheus_kafka_consumer_group_exporter -p <exporter port> --consumer-config <config file path>
 ```
 Run with the `-h` flag to see details on all the available arguments.
 
